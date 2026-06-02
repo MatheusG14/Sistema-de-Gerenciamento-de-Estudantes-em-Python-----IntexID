@@ -1,4 +1,4 @@
-# 📚 Sistema de Boletim Escolar
+# 📚 Sistema de Gerenciamento Escolar - IntexID
 
 ## 📖 Sobre o Projeto
 
