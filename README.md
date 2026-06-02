@@ -117,9 +117,13 @@ python main.py
 
 ---
 
-## 👨‍💻 Autor
+## 👨‍💻 Alunos
 
-Projeto desenvolvido para fins acadêmicos e aprendizado de programação em Python.
+Matheus Gomes Costa Teixeira
+Erick Bruno Ferreira dos Santos 
+Luan Rodrigues de Souza 
+Tiago Mendes Ferreira 
+Leonardo Teles do Nascimento 
 
 
 🌐 Demonstração Interativa
