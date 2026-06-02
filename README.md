@@ -42,6 +42,8 @@ Calcular Média
  ↓
 Registrar Frequência
  ↓
+Calcular Frequência
+ ↓
 Exibir Resultado
  ↓
 Cadastrar Novo Aluno?
