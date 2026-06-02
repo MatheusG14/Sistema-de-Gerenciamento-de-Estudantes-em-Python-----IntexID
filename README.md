@@ -125,8 +125,7 @@ Luan Rodrigues de Souza <p>
 Tiago Mendes Ferreira <p>
 Leonardo Teles do Nascimento 
 
-<p>
-<p>
+<br>
 
 🌐 Demonstração Interativa
 
