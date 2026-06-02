@@ -1,0 +1,134 @@
+# =============================================
+# Sistema de Gerenciamento de Alunos - IntexID
+# =============================================
+
+def calcular_nota(notas):
+    """Realiza o cálculo da média com divisão inteira.
+    
+    Recebe uma lista de notas e retorna a média truncada (sem casas decimais).
+    """
+    # sum(notas) soma todos os elementos da lista. 
+    # O operador // realiza a divisão inteira (descarta o resto).
+    return sum(notas) // 3
+
+
+def calcular_frequencia(boletim):
+    """Calcula a frequência total somando os dias de presença de todas as matérias."""
+    presenca_total = 0
+    
+    # boletim.values() acessa os dicionários internos de cada matéria 
+    # (ex: {"notas": [...], "media": X, "presenca": Y})
+    for dados in boletim.values():
+        presenca_total += dados["presenca"] # Acumula a presença de cada disciplina
+        
+    return presenca_total
+
+
+def cadastrar_aluno(lista_disciplinas):
+    """Gerencia a entrada de dados (nome, notas e faltas) do aluno."""
+    print("-" * 40) # Cria uma linha de Hífens 
+    nome = input("Qual o nome do aluno?: ")
+     
+    # Inicializa a estrutura de dados do aluno utilizando um dicionário
+    aluno = {
+        "nome": nome,
+        "boletim": {} # Dicionário vazio que guardará os dados de cada matéria
+    }
+
+    # Loop para iterar por cada disciplina da lista fornecida
+    for disciplina in lista_disciplinas:
+        print(f"\nDigite as notas de {disciplina}")
+         
+        notas = []
+        # Captura exatamente 3 notas utilizando um loop com range
+        for i in range(1, 4):
+            nota = int(input(f"Qual a {i}ª nota?: "))
+            notas.append(nota) # Adiciona a nota digitada ao final da lista
+             
+        presenca = int(input("Quantos dias o aluno veio?: "))
+         
+        # Chamada da função para calcular a média inteira das notas coletadas
+        media = calcular_nota(notas)
+         
+        # Alimenta o dicionário "boletim" usando o nome da disciplina como chave
+        aluno["boletim"][disciplina] = {
+            "notas": notas,
+            "media": media,
+            "presenca": presenca
+        }
+         
+    # Após cadastrar todas as matérias, calcula a presença global do aluno
+    aluno["presenca_total"] = calcular_frequencia(aluno["boletim"])
+     
+    return aluno
+
+
+def exibir_resultados(aluno):
+    """Exibe o boletim completo e os status de aprovação."""
+    print("\n" + "=" * 40)
+    print(f"RESULTADO FINAL: {aluno['nome'].upper()}") # Exibe o nome em maiúsculo
+    print("=" * 40)
+
+    # .items() permite acessar simultaneamente a chave (disciplina) e o valor (dados)
+    for disciplina, dados in aluno["boletim"].items(): #O items() serve para pegar ambas as partes do dicionário, tanto chave quanto valor e colocando os valores separadamente em disciplina e dados.
+        media_atual = dados["media"]
+        presenca_atual = dados["presenca"]
+         
+        print(f"\n--- {disciplina.upper()} ---")
+        print(f"Nota média: {media_atual}")
+         
+        # Estrutura condicional para validar e definir o status da nota
+        if media_atual < 0:
+            print("Status (Nota): Nota Inválida! Preencha os campos novamente.")
+        elif media_atual < 6:
+            print("Status (Nota): Aluno Reprovado!")
+        else:
+            print("Status (Nota): Aluno Aprovado!")
+           
+        # Condicional simples para verificar a assiduidade do aluno na disciplina
+        if presenca_atual < 50:
+            print("Status (Falta): Reprovado por falta")
+
+    print("\n" + "-" * 40)
+    print(f"Presença total (todas as matérias): {aluno['presenca_total']}")
+    print("-" * 40 + "\n")
+
+
+# ==========================================
+# FLUXO PRINCIPAL DO PROGRAMA
+# ==========================================
+
+print("Bem vindo ao intexID\n")
+
+# Lista que atuará como um banco de dados temporário (em memória) para armazenar os alunos
+banco_de_alunos = []
+
+# Lista fixa de disciplinas que o sistema gerencia
+disciplinas = [
+    "Matemática", "Português", "Física", 
+    "Química", "Biologia", "Educação Física"
+]
+
+# Loop infinito que mantém o programa rodando até que o usuário decida parar
+while True:
+     
+    # 1. Executa a função de cadastro e armazena o dicionário retornado na variável
+    aluno_atual = cadastrar_aluno(disciplinas)
+     
+    # 2. Adiciona o dicionário do aluno atual à lista do "banco de dados"
+    banco_de_alunos.append(aluno_atual)
+     
+    # 3. Passa os dados do aluno cadastrado para a função que gera o relatório na tela
+    exibir_resultados(aluno_atual)
+
+    # 4. Regra de saída do loop: .strip() remove espaços extras e .upper() padroniza em maiúsculo
+    escolha = input("Gostaria de adicionar um novo estudante? (S/N): ").strip().upper()
+    if escolha == "N":
+        break # Interrompe o loop 'while', finalizando os cadastros
+    print()
+
+# Bloco final executado após a saída do loop principal
+print("\nSistema encerrado. Alunos cadastrados na sessão:")
+# Varre o banco de dados para listar apenas os nomes de quem foi cadastrado
+for estudante in banco_de_alunos:
+    print(f"- {estudante['nome']}")
