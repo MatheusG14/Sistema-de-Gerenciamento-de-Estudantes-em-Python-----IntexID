@@ -118,3 +118,10 @@ python main.py
 ## 👨‍💻 Autor
 
 Projeto desenvolvido para fins acadêmicos e aprendizado de programação em Python.
+
+
+🌐 Demonstração Interativa
+
+Acesse o repositório do projeto:
+
+https://github.com/MatheusG14/Sistema-de-Gerenciamento-de-Estudantes-em-Python---Idex
