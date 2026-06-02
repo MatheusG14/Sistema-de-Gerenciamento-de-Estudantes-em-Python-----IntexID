@@ -1,0 +1,1 @@
+# Sistema-de-Gerenciamento-de-Estudantes-em-Python---Idex
