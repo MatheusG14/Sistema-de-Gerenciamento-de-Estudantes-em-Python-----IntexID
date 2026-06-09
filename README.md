@@ -123,8 +123,8 @@ Matheus Gomes Costa Teixeira <p>
 Erick Bruno Ferreira dos Santos <p>
 Luan Rodrigues de Souza <p>
 Tiago Mendes Ferreira <p>
+Henry Clark Batista da Silva <p>
 Leonardo Teles do Nascimento 
-Henry Clark Batista da Silva
 
 <br>
 
